@@ -1,7 +1,7 @@
 import { getLocalStorage, setLocalStorage } from "./utils.mjs";
 
 function renderCartContents() {
-  const cartItems = getLocalStorage("so-cart");
+  const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   const removeButtons = document.querySelectorAll(".remove-from-cart");
@@ -44,8 +44,8 @@ function removeItemFromCart(itemId) {
 function displayCartTotal() {
   // check if cart is empty. if so, display message
   if (getLocalStorage("so-cart").length === 0) {
-    return (document.querySelector(".cart-footer").innerHTML =
-      `Your cart is empty.`);
+    return document.querySelector(".cart-footer").innerHTML =
+      `Your cart is empty.`;
   } else {
     const cartItems = getLocalStorage("so-cart");
     const total = cartItems.reduce((acc, item) => acc + item.FinalPrice, 0);
