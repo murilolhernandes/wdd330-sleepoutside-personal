@@ -42,12 +42,12 @@ function removeItemFromCart(itemId) {
 }
 
 function displayCartTotal() {
+  const cartItems = getLocalStorage("so-cart");
   // check if cart is empty. if so, display message
-  if (getLocalStorage("so-cart").length === 0) {
+  if (!cartItems || cartItems.length === 0) {
     return document.querySelector(".cart-footer").innerHTML =
       `Your cart is empty.`;
   } else {
-    const cartItems = getLocalStorage("so-cart");
     const total = cartItems.reduce((acc, item) => acc + item.FinalPrice, 0);
     const cartFooter = document.querySelector(".cart-total.hide");
     cartFooter.classList.replace("hide", "show");
