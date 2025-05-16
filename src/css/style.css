@@ -241,6 +241,36 @@ button {
   grid-column: 3;
 }
 
+.remove-from-cart {
+  /* position: absolute; */
+  top: 10px;
+  right: -30px;
+  padding: 5px;
+  background-color: transparent;
+  color: #950f0f;
+  padding: 8px 8px 0;
+  border-radius: 100%;
+  transition: all 0.1s linear;
+}
+
+.remove-from-cart:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.cart-total {
+  font-weight: bold;
+  font-size: var(--large-font);
+  margin: 1em 0;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
