@@ -4,6 +4,8 @@ function renderCartContents() {
   const cartItems = getLocalStorage("so-cart") || [];
   const htmlItems = cartItems.map((item) => cartItemTemplate(item));
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
+  updateCartCount();
+  displayCartTotal();
   const removeButtons = document.querySelectorAll(".remove-from-cart");
   removeButtons.forEach((removeButton) => {
     removeButton.addEventListener("click", () =>
@@ -56,8 +58,4 @@ function displayCartTotal() {
   }
 }
 
-displayCartTotal();
-
 renderCartContents();
-
-updateCartCount();
