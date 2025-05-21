@@ -1,4 +1,4 @@
-import { getParam, updateCartCount } from "./utils.mjs";
+import { getParam, updateCartCount, loadHeaderFooter } from "./utils.mjs";
 import ProductData from "./ProductData.mjs";
 import ProductDetails from "./ProductDetails.mjs";
 
@@ -11,6 +11,8 @@ product.init();
 document.addEventListener("DOMContentLoaded", () => {
   updateCartCount();
 });
+
+loadHeaderFooter();
 
 // add to cart button event handler
 // async function addToCartHandler(e) {
