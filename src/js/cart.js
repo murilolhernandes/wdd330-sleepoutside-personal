@@ -11,6 +11,7 @@ function renderCartContents() {
   document.querySelector(".product-list").innerHTML = htmlItems.join("");
   updateCartCount();
   displayCartTotal();
+  // Adds listener to all remove from cart buttons
   const removeButtons = document.querySelectorAll(".remove-from-cart");
   removeButtons.forEach((removeButton) => {
     removeButton.addEventListener("click", () =>
@@ -41,6 +42,7 @@ function cartItemTemplate(item) {
   return newItem;
 }
 
+// Remove item from cart by ID (TO DO: this removes same product IDs - this task will be resolved on other tasks)
 function removeItemFromCart(itemId) {
   let cartItems = getLocalStorage("so-cart");
   cartItems = cartItems.filter((item) => item.Id != itemId);

@@ -1,4 +1,4 @@
-import { getLocalStorage, setLocalStorage, addItemToCart } from "./utils.mjs";
+import { addItemToCart} from "./utils.mjs";
 
 export default class ProductDetails {
   constructor(productId, dataSource) {
@@ -15,14 +15,9 @@ export default class ProductDetails {
       .addEventListener("click", this.addToCart.bind(this));
   }
 
-  // addProductToCart() {
-  //   const cartItems = getLocalStorage("so-cart") || [];
-  //   cartItems.push(this.product);
-  //   setLocalStorage("so-cart", cartItems);
-  // }
   addToCart(e) {
     const productId = e.target.dataset.id;
-    this.dataSource.findProductById(this.productId).then((product) => {
+    this.dataSource.findProductById(productId).then((product) => {
       addItemToCart(product);
     });
   }
@@ -40,7 +35,19 @@ function productDetailsTemplate(product) {
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  document.getElementById("productPrice").textContent = product.FinalPrice;
+  // document.getElementById("productPrice").textContent = `$${product.FinalPrice}`;
+  const productSuggestedRetailPrice = product.SuggestedRetailPrice;
+  const productPrice = product.FinalPrice;
+  const productDiscount = 1 - (productPrice / productSuggestedRetailPrice);
+
+  let productPriceText = `$${productPrice.toFixed(2)}`;
+
+  if (productDiscount > 0) {
+    document.getElementById("productSRP").textContent = `SRP: $${productSuggestedRetailPrice.toFixed(2)}`;
+    productPriceText += `<span class="product-card__discount">-${Math.round(productDiscount * 100)}%off</span>`;
+  }
+
+  document.getElementById("productPrice").innerHTML = productPriceText;
   document.getElementById("productColor").textContent = product.Colors[0].ColorName;
   document.getElementById("productDesc").innerHTML = product.DescriptionHtmlSimple;
 

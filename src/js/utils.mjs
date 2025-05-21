@@ -29,8 +29,8 @@ export function getParam(param) {
   return product;
 }
 
-export function renderListWithTemplate(template, parentElement, list, position = "afterbegin", clear = false) {
-  const htmlStrings = list.map(template);
+export function renderListWithTemplate(templateFn, parentElement, list, position = "afterbegin", clear = false) {
+  const htmlStrings = list.map(templateFn);
   if (clear) {
     parentElement.innerHTML = "";
   }
@@ -45,6 +45,7 @@ export function updateCartCount() {
   }
 }
 
+// updates the cart badge right away
 export function addItemToCart(product) {
   const cart = getLocalStorage("so-cart") || [];
   cart.push(product);
@@ -66,12 +67,14 @@ async function loadTemplate(path) {
 }
 
 export async function loadHeaderFooter() {
-  const headerTemplate = await loadTemplate("../partials/header.html");
-  const footerTemplate = await loadTemplate("../partials/footer.html");
-  
+  const header = await loadTemplate("../partials/header.html");
+  const footer = await loadTemplate("../partials/footer.html");
+
   const headerElement = document.querySelector("#main-header");
   const footerElement = document.querySelector("#main-footer");
 
-  renderWithTemplate(headerTemplate, headerElement);
-  renderWithTemplate(footerTemplate, footerElement);
+  renderWithTemplate(header, headerElement);
+  renderWithTemplate(footer, footerElement);
+
+  updateCartCount();
 }
