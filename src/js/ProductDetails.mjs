@@ -35,7 +35,6 @@ function productDetailsTemplate(product) {
   productImage.src = product.Image;
   productImage.alt = product.NameWithoutBrand;
 
-  // document.getElementById("productPrice").textContent = `$${product.FinalPrice}`;
   const productSuggestedRetailPrice = product.SuggestedRetailPrice;
   const productPrice = product.FinalPrice;
   const productDiscount = 1 - (productPrice / productSuggestedRetailPrice);
@@ -44,7 +43,7 @@ function productDetailsTemplate(product) {
 
   if (productDiscount > 0) {
     document.getElementById("productSRP").textContent = `SRP: $${productSuggestedRetailPrice.toFixed(2)}`;
-    productPriceText += `<span class="product-card__discount">-${Math.round(productDiscount * 100)}%off</span>`;
+    productPriceText += `<span class="product-card__discount">-${Math.round(productDiscount * 100)}% off</span>`;
   }
 
   document.getElementById("productPrice").innerHTML = productPriceText;
