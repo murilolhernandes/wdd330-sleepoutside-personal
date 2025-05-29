@@ -91,7 +91,7 @@ p {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
@@ -116,7 +116,8 @@ p {
 }
 
 .search-form button,
-.checkout-button, #checkoutSubmit {
+.checkout-button,
+#checkoutSubmit {
   background-color: var(--tertiary-color);
   color: white;
   padding: 0.4em 1em;
@@ -128,7 +129,8 @@ p {
 }
 
 .search-form button:hover,
-.checkout-button:hover, #checkoutSubmit:hover {
+.checkout-button:hover,
+#checkoutSubmit:hover {
   background-color: var(--secondary-color);
 }
 
@@ -505,7 +507,7 @@ button {
   gap: 1em;
 }
 
-#checkout-form input[type=submit] {
+#checkout-form input[type="submit"] {
   border: none;
 }
 
