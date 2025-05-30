@@ -36,4 +36,17 @@ export default class ExternalServices {
     };
     return await fetch(`${baseURL}checkout/`, options).then(convertToJson);
   }
+  
+  async getAllProducts() {
+    const categories = ["tents", "backpacks", "sleeping-bags", "hammocks"];
+    const allProducts = [];
+
+    for (let cat of categories) {
+      const response = await fetch(`${baseURL}products/search/${cat}`);
+      const data = await response.json(); // or convertToJson()
+      allProducts.push(...data.Result);
+    }
+
+    return allProducts;
+    }
 }
